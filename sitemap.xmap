@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+
+  <map:flow language="javascript"/>
+  
+  <map:pipelines>
+    <map:pipeline type="noncaching">
+      <map:match pattern="">
+        <map:redirect-to uri="index.html"/>
+      </map:match>
+      
+      <map:match pattern="index.html">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="content/index.xsl" type="xslt2">
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xhtml" />
+      </map:match>
+ 
+      <!-- new url structure for Final Project-->
+      <map:match pattern="departments">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/search engine/department_listing.xsl" type="xslt2">
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xhtml" />
+      </map:match>
+      
+      <map:match pattern="coursegroup">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/search engine/course_group_listing.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize  />
+      </map:match>
+      
+      <map:match pattern="course_search">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/search engine/course_search.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xml" />
+      </map:match>
+      
+      <map:match pattern="search">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/search_result.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xml" />
+      </map:match>
+      
+      <map:match pattern="course/searchbydepartment">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/department_courses.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xml" />
+      </map:match>
+      
+      <map:match pattern="course/searchbydepartment.pdf">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/pdf/department_courses.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="fo2pdf" />
+      </map:match>
+      
+      <map:match pattern="course/searchbycoursegroup">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/course_group.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xml" />
+      </map:match>
+      
+      
+      
+      <map:match pattern="course/individual_course">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/course_detail.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xml" />
+      </map:match>
+      
+      
+      
+      <!-- end of new url structure for Final Project -->
+      
+      <map:match pattern="courses/*.html">
+	       <map:generate src="data/courses.xml" />
+	       <map:transform src="xsl/course_detail.xsl" type="xslt2">
+	         <map:parameter name="use-request-parameters" value="true"/>
+	         <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+	       </map:transform>
+	       <map:serialize type="xml"/>
+      </map:match>
+    </map:pipeline>
+
+    <!-- these are generic match patterns that invoke
+         readers, so that cocoon can serve 'static' files 
+    -->
+    <map:pipeline>
+      <map:match pattern="**.html">
+        <map:read src="{1}.html" mime-type="text/html" />
+      </map:match>
+      <map:match pattern="**.xml">
+        <map:read src="{1}.xml" mime-type="text/xml" />
+      </map:match>
+      <map:match pattern="**.xsl">
+        <map:read src="{1}.xsl" mime-type="text/xml" />
+      </map:match>
+      <map:match pattern="**.css">
+        <map:read src="{1}.css" mime-type="text/css" />
+      </map:match>
+      <map:match pattern="**.png">
+        <map:read src="{1}.png" mime-type="image/png" />
+      </map:match>
+      <map:match pattern="**.gif">
+        <map:read src="{1}.gif" mime-type="image/gif" />
+      </map:match>
+      <map:match pattern="**.jpg">
+        <map:read src="{1}.jpg" mime-type="image/jpeg" />
+      </map:match>
+    </map:pipeline>
+  </map:pipelines>
+</map:sitemap>
