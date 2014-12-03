@@ -30,7 +30,7 @@
     <!-- Header part of HTML body -->
     <xsl:template name="header">
         <div id="header">
-            <div id = "image"><img src="{$relativepath}images/harvard_shield.png" alt="harvard_shield"/></div>
+            <div id = "home-image"><a href="{$relativepath}index.html"><img src="{$relativepath}images/harvard_shield.png" alt="harvard_shield"/></a></div>
             <div id="title">
                 Harvard University, Faculty of Arts &amp; Sciences Course Catalog
             </div>
@@ -41,9 +41,8 @@
     <!-- navigation part of HTML body -->
     <xsl:template name="navigation">
         <div id="navigation">
-            <a href="departments">Departments</a><br/>
-            <a href="coursegroup">Course group</a><br/>
-            <a href="course_search">Course search</a><br/>
+            <a href="{$relativepath}departments">Departments</a><br/>
+            <a href="{$relativepath}course_search">Course search</a><br/>
         </div>
     </xsl:template>
     

@@ -12,8 +12,9 @@
         encoding="UTF-8"
         indent="yes" />
     
-    <xsl:param name="course_group" />
     <xsl:param name="relativepath"/>
+    <xsl:param name="department"/>
+    <xsl:param name="course_group"/>
     
     <!-- Override the basic frame of presentation for HTML title -->
     <xsl:template match="/">
@@ -36,6 +37,8 @@
         <div id="breadcrumb">
             <a href="../index.html">Departments&#160;</a>
             <img src="../images/arrow.gif" alt="arrow"/>&#160;
+            <xsl:value-of select="$department"/>&#160;
+            <img src="../images/arrow.gif" alt="arrow"/>&#160;
             <xsl:value-of select="$course_group"/>
         </div>
         <br/>
@@ -52,7 +55,7 @@
             <tr>
                 <td>How</td>
                 <td>are</td>
-                <td><a href="individual_course"><xsl:value-of select="title"></xsl:value-of></a></td>
+                <td><a href="{$relativepath}course/course_detail?cat_num={@cat_num}"><xsl:value-of select="title"></xsl:value-of></a></td>
             </tr>
         </xsl:for-each>
     </table>
