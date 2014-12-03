@@ -4,6 +4,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     
     <xsl:import href="common.xsl"/>
+    <xsl:include href="courses_selected.xsl"/>
     
     <xsl:output method="html"
         doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
@@ -78,38 +79,7 @@
                 <xsl:sort order="ascending" select="course_number/num_int" data-type="number"></xsl:sort>
                 <xsl:sort order="ascending" select="course_number/num_char"></xsl:sort>
                 <xsl:sort order="ascending" select="title"></xsl:sort>
-                <tr>
-                    <td>
-                        <xsl:if test="@offered = 'N'">
-                            <xsl:value-of select="course_group"/>
-                            <xsl:value-of select="course_number/num_int"/>
-                        </xsl:if>
-                        <xsl:if test="@offered = 'Y'">
-                            <a href="../courses/course.html?cat_num={@cat_num}">
-                                <xsl:value-of select="course_group"/>
-                                <xsl:value-of select="course_number/num_int"/>
-                            </a>
-                        </xsl:if>
-                    </td>
-                    <td><xsl:value-of select="term"/></td>
-                    <td>
-                        <xsl:if test="@offered = 'N'">
-                            <xsl:text>[</xsl:text>
-                            <xsl:if test="instructor_approval_required='Y'">
-                                <xsl:text>*</xsl:text>
-                            </xsl:if>
-                            <xsl:value-of select="title"/>
-                            <xsl:text>]</xsl:text>
-                        </xsl:if>
-                        
-                        <xsl:if test="@offered = 'Y'">
-                            <a href="../courses/course.html?cat_num={@cat_num}">
-                                <xsl:if test="instructor_approval_required='Y'">*</xsl:if>
-                                <xsl:value-of select="title"/>
-                            </a>
-                        </xsl:if>
-                    </td>
-                </tr>
+                <xsl:call-template name="selected_courses"></xsl:call-template>
             </xsl:for-each>
             </table>
             <br/>
@@ -130,4 +100,6 @@
     </xsl:template>
 
     <xsl:template match="text()"/>
+    
+    
  </xsl:stylesheet>

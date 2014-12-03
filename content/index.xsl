@@ -46,42 +46,42 @@
         </ul>
         
         <ul><h2>Day and Time</h2>
-            <li>Monday
+            <li><a href="{$relativepath}course/searchbyday?day={1}">Monday</a>
                 <ul class="for-hover">
-                    <li>morning</li>
-                    <li>2:00</li>
-                    <li>4:00</li>
+                    <a href="course/searchbytime?time={1200}"><li>morning</li></a>
+                    <a href="course/searchbytime?time={1500}"><li>2:00</li></a>
+                    <a href="course/searchbytime"><li>4:00</li></a>
                 </ul>
             </li>
-            <li>Tuesday
+            <li><a href="{$relativepath}course/searchbyday?day={2}">Tuesday</a>
                 <ul class="for-hover">
-                    <li>morning</li>
-                    <li>2:00</li>
-                    <li>4:00</li>
+                    <a href="course/searchbytime"><li>morning</li></a>
+                    <a href="course/searchbytime"><li>2:00</li></a>
+                    <a href="course/searchbytime"><li>4:00</li></a>
                 </ul></li>
-            <li>Wednesday
+            <li><a href="{$relativepath}course/searchbyday?day={3}">Wednesday</a>
                 <ul class="for-hover">
-                    <li>morning</li>
-                    <li>2:00</li>
-                    <li>4:00</li>
+                    <a href="course/searchbytime"><li>morning</li></a>
+                    <a href="course/searchbytime"><li>2:00</li></a>
+                    <a href="course/searchbytime"><li>4:00</li></a>
                 </ul></li>
-            <li>Thursday
+            <li><a href="{$relativepath}course/searchbyday?day={4}">Thursday</a>
                 <ul class="for-hover">
-                    <li>morning</li>
-                    <li>2:00</li>
-                    <li>4:00</li>
+                    <a href="course/searchbytime"><li>morning</li></a>
+                    <a href="course/searchbytime"><li>2:00</li></a>
+                    <a href="course/searchbytime"><li>4:00</li></a>
                 </ul></li>
-            <li>Friday
+            <li><a href="{$relativepath}course/searchbyday?day={5}">Friday</a>
                 <ul class="for-hover">
-                    <li>morning</li>
-                    <li>2:00</li>
-                    <li>4:00</li>
+                    <a href="course/searchbytime"><li>morning</li></a>
+                    <a href="course/searchbytime"><li>2:00</li></a>
+                    <a href="course/searchbytime"><li>4:00</li></a>
                 </ul></li>
-            <li>Saturday
+            <li><a href="{$relativepath}course/searchbyday?day={6}">Saturday</a>
                 <ul class="for-hover">
-                    <li>morning</li>
-                    <li>2:00</li>
-                    <li>4:00</li>
+                    <a href="course/searchbytime"><li>morning</li></a>
+                    <a href="course/searchbytime"><li>2:00</li></a>
+                    <a href="course/searchbytime"><li>4:00</li></a>
                 </ul></li>
         </ul>
     </xsl:template>

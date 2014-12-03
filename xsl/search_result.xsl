@@ -2,7 +2,9 @@
 <!-- Shows the list of departments of the courses -->
 <xsl:stylesheet version="2.0" xmlns ="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    
     <xsl:import href="common.xsl"/>
+    <xsl:include href="courses_selected.xsl"/>
     
     <xsl:output method="html"
         doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
@@ -44,49 +46,36 @@
         </div>
         <table>
             <tr>
-                <th>Title</th><th>Term</th><th>Day-Time</th>
+                <th>Number</th><th>Term</th><th>Title</th>
             </tr>
             
             <xsl:for-each select="
                 for $a in(
-                (
-                for $b in(
-                    for $c in(
-                        for $d in(course)
+                    for $b in(
+                        for $c in(
+                            for $d in(course)
+                            return 
+                            if($day)
+                            then($d[schedule/meeting/@day = '1'])
+                            else($d)
+                        )
                         return 
-                        if($day)
-                        then($d[schedule/meeting/@day = '1'])
-                        else()
-                    
+                        if($time)
+                        then($c[schedule/meeting/@begin_time = '1800'])
+                        else($c)
                     )
                     return 
-                    if($time)
-                    then($c[schedule/meeting/@begin_time = '1800'])
-                    else()
-                )
-                return 
-                if($department)
-                then($b[department/dept_short_name=$department])
-                else($b)
-                
-                )
-                ) 
+                    if($department)
+                    then($b[department/dept_short_name=$department])
+                    else($b)
+                    )
                 return 
                 if($vehicle)
                 then($a)
                 else($a)">
                 
-                <tr>
-                    <td><xsl:value-of select="title"/></td>
-                    <td><xsl:value-of select="term"/></td>
-                    <td><xsl:value-of select="schedule/meeting/@day"/><xsl:value-of select="schedule/meeting/@begin_time"/></td>
-                </tr>
+                <xsl:call-template name="selected_courses"></xsl:call-template>
             </xsl:for-each>
         </table>
-        
-        
-        
-        
     </xsl:template>
-   
 </xsl:stylesheet>

@@ -92,6 +92,24 @@
         <map:serialize type="xml" />
       </map:match>
       
+      <map:match pattern="course/searchbyday">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/daysearch.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xml" />
+      </map:match>
+      
+      <map:match pattern="course/searchbytime">
+        <map:generate src="data/courses.xml" />
+        <map:transform src="xsl/timesearch.xsl" type="xslt2">
+          <map:parameter name="use-request-parameters" value="true"/>
+          <map:parameter name="relativepath" value="{baselink:SitemapBaseLink}"/>
+        </map:transform>
+        <map:serialize type="xml" />
+      </map:match>
+      
       
       
       <!-- end of new url structure for Final Project -->
